@@ -9,6 +9,7 @@ import users from './routes/users';
 import auth from './routes/auth';
 
 app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
