@@ -10,8 +10,8 @@ let router = express.Router();
 
 router.post('/', (req, res) => {
   let errors = {};
-  user.find({ email: req.body.email }, function (err, user) {
-    if (user.length > 0) {
+  user.find({ email: req.body.email }, function (err, currentUser) {
+    if (currentUser.length > 0) {
       errors.email = 'There is user with such email';
       res.status(400).json(errors);
     } else {
