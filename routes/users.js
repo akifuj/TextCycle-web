@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
       res.status(400).json(errors);
     } else {
       const { username, email, password } = req.body;
-      const hashed_password = bcrypt.hashSync(password, 10);
+      const hashed_password = bcrypt.hashSync(password);
       new user({
         username,
         email,

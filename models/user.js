@@ -17,3 +17,6 @@ mongoose.connect(dbUrl, function (err, res) {
 });
 const user = mongoose.model('user', UserSchema);
 export default user;
+
+
+mongoimport -h ds149491.mlab.com:49491 -d textcycle -c books -u heroku_q9f6hbn1 -p tjc33hv2929r8n2kc4ia17mf45 --file filename.json
