@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 import AppBar from 'material-ui/AppBar';
@@ -19,7 +20,7 @@ class NavigationBar extends Component {
     return (
         <AppBar
           iconElementLeft={<LogoIconButton />}
-          iconElementRight={isAuthenticated ? <FlatButton label="Logout" onTouchTap={this.logout.bind(this)}/> : <FlatButton label="Login" href='/login'/>}
+          iconElementRight={isAuthenticated ? <FlatButton label="Logout" onTouchTap={this.logout.bind(this)}/> : <FlatButton label="Login" containerElement={<Link to='/login'/>} />}
         />
     );
   }
