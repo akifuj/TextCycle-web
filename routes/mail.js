@@ -2,6 +2,10 @@ import express from 'express';
 let router = express.Router();
 var sendgrid = require('sendgrid')(process.env.SENDGRID_API_KEY);
 
+if (process.env.SENDGRID_API_KEY) {
+  console.log("ZZZZZZZZZ")
+}
+
 router.post('/', (req, res) => {
   let errors = {};
   sendgrid.send({
