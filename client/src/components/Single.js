@@ -1,8 +1,30 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { sendMailRequest } from '../actions/mail';
 import { Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 
 class Single extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      errors: {},
+      isLoading: false
+    }
+
+    this.onTouchTap = this.onTouchTap.bind(this);
+  }
+
+  onTouchTap(e) {
+    e.preventDefault();
+
+    this.setState({ errors: {}, isLoading: true });
+    this.props.sendMailRequest(this.state).then(
+      () => this.context.router.push('/'),
+      (err) => this.setState({ errors: err.response.data, isLoading: false })
+    )
+  }
+
   render () {
     const i = this.props.posts.posts.findIndex((post) => post._id === this.props.params.postId);
     const post = this.props.posts.posts[i];
@@ -16,7 +38,7 @@ class Single extends Component {
           <h2>¥1,000</h2>
         </CardText>
         <CardActions>
-          <RaisedButton label="購入" primary/>
+          <RaisedButton label="購入" primary onTouchTap={this.onTouchTap} disabled={this.state.isLoading}/>
         </CardActions>
         <p>出品者: aki(経済学部3年)</p>
       </Card>
@@ -24,4 +46,12 @@ class Single extends Component {
   }
 }
 
-export default Single;
+Single.propTypes = {
+  sendMailRequest: React.PropTypes.func.isRequired
+}
+
+Single.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+export default connect(null, { sendMailRequest })(Single);

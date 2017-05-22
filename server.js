@@ -7,6 +7,7 @@ import path from 'path'
 
 import users from './routes/users';
 import auth from './routes/auth';
+import mail from './routes/mail';
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -16,6 +17,7 @@ import Book from './models/book';
 
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/mail/send', mail);
 
 app.post('/api/books', (request, response) => {
   const { title, author, publisher, image } = request.body;
