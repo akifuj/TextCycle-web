@@ -11,12 +11,12 @@ var mail = new helper.Mail(fromEmail, subject, toEmail, content);
 
 router.post('/', (req, res) => {
   let error = {}
-  const sgReq = Sendgrid.emptyRequest({
+  const sgReq = sendgrid.emptyRequest({
     method: 'POST',
     path: '/v3/mail/send',
     body: mail.toJSON()
   });
-  Sendgrid.API(sgReq, (err) => {
+  sendgrid.API(sgReq, (err) => {
     if (err) {
       res.status(500).json({ error: err })
     }
