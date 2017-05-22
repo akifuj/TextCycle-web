@@ -16,12 +16,9 @@ router.post('/', (req, res) => {
     path: '/v3/mail/send',
     body: mail.toJSON()
   });
-  sendgrid.API(sgReq, (err) => {
-    if (err) {
-      res.status(500).json({ error: err })
-    }
-    console.log("success!");
-  });
+  sendgrid.API(sgReq)
+    .then(response => res.json({ success: true }))
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 export default router;
