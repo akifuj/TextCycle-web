@@ -10,7 +10,7 @@ var content = new helper.Content('text/plain', 'Hello, Email!');
 var mail = new helper.Mail(fromEmail, subject, toEmail, content);
 
 router.post('/', (req, res) => {
-  error = {}
+  let error = {}
   const sgReq = Sendgrid.emptyRequest({
     method: 'POST',
     path: '/v3/mail/send',
