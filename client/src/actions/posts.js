@@ -28,10 +28,9 @@ export function fetchPosts() {
   return (dispatch) => {
     dispatch(requestPosts());
     return axios({
-      url: '/api/books',
+      url: '/api/posts',
       method: 'get',
       responseType: 'json',
-      //timeout: 20000,
     })
     .then(function(response) {
       dispatch(receivePosts(response.data));
@@ -41,3 +40,13 @@ export function fetchPosts() {
     })
   }
 };
+
+export function deletePost(id) {
+  return dispatch => {
+    return axios({
+      url: '/api/posts',
+      method: 'delete',
+      data: { id }
+    })
+  }
+}

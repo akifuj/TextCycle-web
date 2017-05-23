@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendMailRequest } from '../actions/mail';
+import { deletePost } from '../actions/posts';
 import { Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
@@ -20,18 +21,31 @@ class Single extends Component {
     }
   }
 
+
   handleClick(post) {
     let data = { post: post, user: this.props.auth.user};
     this.setState({ errors: {}, isLoading: true });
     this.props.sendMailRequest(data).then(
-      () => this.setState({ open: true}),
+      () => this.props.deletePost(post._id).then(
+        this.setState({ open: true })
+      ),
       (err) => this.setState({ errors: err.response.data, isLoading: false, open: true, message: { title: "エラーが発生しました", text: "再度お試し下さい。" } })
     )
   }
 
+
+/*
+  handleClick(post) {
+    let data = { post: post, user: this.props.auth.user};
+    this.setState({ errors: {}, isLoading: true });
+    this.props.deletePost(post._id).then(
+      this.setState({ open: true })
+    )
+  }
+*/
+
   handleClose = () => {
     this.setState({open: false});
-    this.context.router.push('/');
   };
 
   render () {
@@ -70,11 +84,12 @@ class Single extends Component {
 }
 
 Single.propTypes = {
-  sendMailRequest: React.PropTypes.func.isRequired
+  sendMailRequest: React.PropTypes.func.isRequired,
+  deletePost: React.PropTypes.func.isRequired
 }
 
 Single.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default connect(null, { sendMailRequest })(Single);
+export default connect(null, { sendMailRequest, deletePost })(Single);
