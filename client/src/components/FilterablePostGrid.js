@@ -30,6 +30,7 @@ class FilterablePostGrid extends Component {
         <PostGrid
           className='container' filterText={this.state.filterText}
           inCategoryOnly={this.state.inCategoryOnly}
+          {...this.props}
         />
       </div>
     )

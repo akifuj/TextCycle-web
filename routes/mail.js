@@ -22,7 +22,7 @@ router.post('/', (req, res, next) => {
   });
   sendgrid.API(sgReq, (err) => {
     if (err) {
-      console.log(err);
+      res.status(401).json({ error: err })
       return;
     }
     res.json({ success: true })

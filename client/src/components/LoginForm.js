@@ -69,12 +69,6 @@ class LoginForm extends Component {
       <div>
         <Card className="container">
           <LogoIconButton/>
-          <Dialog
-            title={errors.form}
-            actions={actions}
-            modal={false}
-            open={this.state.open}
-          >再度お試しください</Dialog>
           <form onSubmit={this.onSubmit}>
             <h2 className="card-heading">Login</h2>
               <TextFieldGroup
@@ -98,6 +92,13 @@ class LoginForm extends Component {
             </div>
             <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link></CardText>
           </form>
+
+          <Dialog
+            title={errors.form}
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+          >再度お試しください</Dialog>
         </Card>
       </div>
     )

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router'
 import {GridList, GridTile} from 'material-ui/GridList';
 
@@ -49,10 +48,4 @@ class PostGrid extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return  {
-    posts: state.posts,
-  };
-}
-
-export default connect(mapStateToProps, {})(PostGrid);
+export default PostGrid;
