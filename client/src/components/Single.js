@@ -11,15 +11,12 @@ class Single extends Component {
       errors: {},
       isLoading: false
     }
-
-    this.onTouchTap = this.onTouchTap.bind(this);
   }
 
-  onTouchTap(e) {
-    e.preventDefault();
-
+  handleClick(post) {
+    let data = { post: post, user: this.props.auth.user};
     this.setState({ errors: {}, isLoading: true });
-    this.props.sendMailRequest(this.state).then(
+    this.props.sendMailRequest(data).then(
       () => this.context.router.push('/'),
       (err) => this.setState({ errors: err.response.data, isLoading: false })
     )
@@ -38,7 +35,7 @@ class Single extends Component {
           <h2>¥1,000</h2>
         </CardText>
         <CardActions>
-          <RaisedButton label="購入" primary onTouchTap={this.onTouchTap} disabled={this.state.isLoading}/>
+          <RaisedButton label="購入" primary onTouchTap={this.handleClick.bind(this, post)} disabled={this.state.isLoading}/>
         </CardActions>
         <p>出品者: aki(経済学部3年)</p>
       </Card>

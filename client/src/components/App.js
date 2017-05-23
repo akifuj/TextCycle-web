@@ -27,6 +27,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return  {
     posts: state.posts,
+    auth: state.auth
   };
 }
 
