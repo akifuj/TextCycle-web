@@ -5,6 +5,15 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path'
 
+const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost/textcycle';
+mongoose.connect(dbUrl, function (err, res) {
+  if (err) {
+    console.log ('ERROR connecting to: ' + dbUrl + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + dbUrl);
+  }
+});
+
 /*
 import posts from './routes/posts';
 import users from './routes/users';
