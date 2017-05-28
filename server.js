@@ -44,7 +44,7 @@ app.get('/api/ios/posts', (request, response) => {
 })
 
 app.get('/api/ios/users/:id', (request, response) => {
-  user.findById(request.params.id, (err, user) => {
+  iosUser.findById(request.params.id, (err, user) => {
     if (err) response.status(500).send()
     else response.status(200).send(user)
   })
