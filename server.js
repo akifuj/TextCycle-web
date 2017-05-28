@@ -10,6 +10,9 @@ import users from './routes/users';
 import auth from './routes/auth';
 import mail from './routes/mail';
 
+import user from './models/ios-user';
+import post from  './models/post'
+
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -18,6 +21,22 @@ app.use('/api/posts', posts);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/mail/send', mail);
+
+// GETリクエストに対処
+app.get('/api/ios/posts', (request, response) => {
+  post.find({}, (err, postsArray) => {
+    if (err) respnse.status(500).send();
+    else response.status(200).send(postsArray);
+  })
+})
+
+app.get('/api/ios/users/:id', (request, response) => {
+  user.findById(request.params.id, (err, user) => {
+    if (err) response.status(500).send()
+    else response.status(200).send(user)
+  })
+})
+
 
 app.listen(port, err => {
   if (err) throw new Error(err)
