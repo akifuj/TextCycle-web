@@ -50,6 +50,20 @@ app.get('/api/ios/users/:id', (request, response) => {
   })
 })
 
+app.put('/api/ios/users/dealing/:id'), (request, response) => {
+  iosUser.findByIdAndUpDate(id, { $set: {"dealing": 1} }, err => {
+    if (err) response.status(500).send()
+    else response.status(200). send()
+  })
+}
+
+app.put('/api/ios/users/undealing/:id'), (request, response) => {
+  iosUser.findByIdAndUpDate(id, { $set: {"dealing": 0} }, err => {
+    if (err) response.status(500).send()
+    else response.status(200). send()
+  })
+}
+
 
 app.listen(port, err => {
   if (err) throw new Error(err)
