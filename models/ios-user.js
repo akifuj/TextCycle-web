@@ -11,4 +11,4 @@ const UserSchema = new mongoose.Schema({
 });
 
 const user = mongoose.model('user', UserSchema);
-export default iosUser;
+export default user;

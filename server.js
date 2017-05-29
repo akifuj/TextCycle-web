@@ -15,14 +15,12 @@ mongoose.connect(dbUrl, function (err, res) {
 });
 
 /*
-import posts from './routes/posts';
-import users from './routes/users';
 import auth from './routes/auth';
 import mail from './routes/mail';
 */
 
-import iosUser from './models/ios-user';
-import post from  './models/post';
+import posts from './routes/posts';
+import users from './routes/users';
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -36,36 +34,8 @@ app.use('/api/mail/send', mail);
 */
 
 // GETリクエストに対処
-app.use('/posts/', posts);
+app.use('/posts', posts);
 app.use('/users', users);
-app.get('/posts', (request, response) => {
-  post.find({}, (err, postsArray) => {
-    if (err) respnse.status(500).send();
-    else response.status(200).send(postsArray);
-  })
-})
-
-app.get('/api/ios/users/:id', (request, response) => {
-  iosUser.findById(request.params.id, (err, user) => {
-    if (err) response.status(500).send()
-    else response.status(200).send(user)
-  })
-})
-
-app.put('/api/ios/users/dealing/:id'), (request, response) => {
-  iosUser.findByIdAndUpDate(id, { $set: {"dealing": 1} }, err => {
-    if (err) response.status(500).send()
-    else response.status(200). send()
-  })
-}
-
-app.put('/api/ios/users/undealing/:id'), (request, response) => {
-  iosUser.findByIdAndUpDate(id, { $set: {"dealing": 0} }, err => {
-    if (err) response.status(500).send()
-    else response.status(200). send()
-  })
-}
-
 
 app.listen(port, err => {
   if (err) throw new Error(err)
