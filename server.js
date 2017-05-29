@@ -36,7 +36,9 @@ app.use('/api/mail/send', mail);
 */
 
 // GETリクエストに対処
-app.get('/api/ios/posts', (request, response) => {
+app.use('/posts/', posts);
+app.use('/users', users);
+app.get('/posts', (request, response) => {
   post.find({}, (err, postsArray) => {
     if (err) respnse.status(500).send();
     else response.status(200).send(postsArray);

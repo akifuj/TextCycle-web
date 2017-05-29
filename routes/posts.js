@@ -1,20 +1,40 @@
 import express from 'express';
-import book from '../models/book'
+import post from '../models/post'
 
 let router = express.Router();
 
-router.get('/', (request, response) => {
-  book.find({}, (err, testArray) => {
+app.post('/', (request, response) => {
+  post.find({}, (err, postsArray) => {
     if (err) respnse.status(500).send();
-    else response.status(200).send(testArray);
+    else response.status(200).send();
   })
 })
 
-router.delete('/', (req, res) => {
-  const { id } = req.body;
-  book.findByIdAndRemove(id, err => {
-    if (err) res.status(500).send()
-    else res.status(200)
+app.get('/', (request, response) => {
+  post.find({}, (err, postsArray) => {
+    if (err) respnse.status(500).send();
+    else response.status(200).send(postsArray);
+  })
+})
+
+app.get('/:user_id', (request, response) => {
+  post.find({ user_id: request.body.user_id }, (err, postsArray) => {
+    if (err) respnse.status(500).send();
+    else response.status(200).send(postsArray);
+  })
+})
+
+app.put('/:id'), (request, response) => {
+  iosUser.findByIdAndUpDate(id, { $set: request.body.params }, err => {
+    if (err) response.status(500).send()
+    else response.status(200). send()
+  })
+}
+
+app.delete('/:id', (request, response) => {
+  post.findByIdAndRemove(id, err => {
+    if (err) respnse.status(500).send();
+    else response.status(200).send();
   })
 })
 
