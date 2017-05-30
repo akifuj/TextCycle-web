@@ -11,7 +11,8 @@ router.post('/', (request, response) => {
 })
 
 router.get('/:id', (request, response) => {
-  user.findById(request.id, (err, user) => {
+  console.log(id)
+  user.findById(id, (err, user) => {
     if (err) response.status(500).send();
     else response.status(200).send(user);
   })
