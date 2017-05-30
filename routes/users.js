@@ -10,19 +10,19 @@ router.post('/', (request, response) => {
   })
 })
 
-router.get('/:id'), (request, response) => {
+router.get('/:id', (request, response) => {
   user.findById(id, (err, user) => {
     if (err) respnse.status(500).send();
     else response.status(200).send(user);
   })
 })
 
-router.put('/:id'), (request, response) => {
+router.put('/:id', (request, response) => {
   iosUser.findByIdAndUpDate(id, { $set: request.body.params }, err => {
     if (err) response.status(500).send()
     else response.status(200). send()
   })
-}
+})
 
 router.delete('/:id', (request, response) => {
   user.findByIdAndRemove(id, err => {
