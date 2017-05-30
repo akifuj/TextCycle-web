@@ -12,7 +12,7 @@ router.post('/', (request, response) => {
 
 router.get('/:id', (request, response) => {
   user.findById(id, (err, user) => {
-    if (err) respnse.status(500).send();
+    if (err) response.status(500).send();
     else response.status(200).send(user);
   })
 })
