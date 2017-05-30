@@ -10,10 +10,10 @@ router.post('/', (request, response) => {
   })
 })
 
-router.get('/:id', (request, response) => {
-  user.findById(id, (err, usersArray) => {
+router.get('/:id'), (request, response) => {
+  user.findById(id, (err, user) => {
     if (err) respnse.status(500).send();
-    else response.status(200).send(usersArray);
+    else response.status(200).send(user);
   })
 })
 
