@@ -5,14 +5,14 @@ let router = express.Router();
 
 router.post('/', (request, response) => {
   user.find({}, (err, usersArray) => {
-    if (err) respnse.status(500).send();
+    if (err) response.status(500).send();
     else response.status(200).send();
   })
 })
 
 router.get('/:id', (request, response) => {
   user.findById(id, (err, user) => {
-    if (err) response.status(500).send();
+    if (err) console.log(err); response.status(500).send();
     else response.status(200).send(user);
   })
 })
@@ -26,7 +26,7 @@ router.put('/:id', (request, response) => {
 
 router.delete('/:id', (request, response) => {
   user.findByIdAndRemove(id, err => {
-    if (err) respnse.status(500).send();
+    if (err) response.status(500).send();
     else response.status(200).send();
   })
 })
