@@ -4,9 +4,10 @@ import user from '../models/ios-user'
 let router = express.Router();
 
 router.post('/', (request, response) => {
-  user.find({}, (err, usersArray) => {
-    if (err) response.status(500).send();
-    else response.status(200).send();
+  const { username, phoneNumber, major,degree, year, sex, introduction } = request.params
+  new user({ username, phoneNumber, major, degree, year, sex, introduction }).save(err => {
+    if (err) response.status(500).send(err)
+    else response.status(200).send(`${name} was successfully created.`)
   })
 })
 

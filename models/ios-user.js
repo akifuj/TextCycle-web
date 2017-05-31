@@ -7,7 +7,8 @@ const UserSchema = new mongoose.Schema({
   major: Number,
   degree: Number,
   year: Number,
-  sex: Number
+  sex: Number,
+  introduction: String
 });
 
 const user = mongoose.model('user', UserSchema);

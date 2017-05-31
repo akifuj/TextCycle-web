@@ -4,7 +4,11 @@ import post from '../models/post'
 let router = express.Router();
 
 router.post('/', (request, response) => {
-  post.find({}, (err, postsArray) => {
+  /*
+  const { username, phoneNumber, major,degree, year, sex, introduction } = request.body
+  new user
+  */
+  post.find({}, (err) => {
     if (err) response.status(500).send();
     else response.status(200).send();
   })
