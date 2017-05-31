@@ -4,7 +4,6 @@ import user from '../models/ios-user'
 let router = express.Router();
 
 router.post('/', (request, response) => {
-  consle.log("HIEHIEDHIEHIEHID")
   const { username, phoneNumber, major,degree, year, sex, introduction } = request.body
   new user({ username, phoneNumber, major, degree, year, sex, introduction }).save(err => {
     if (err) response.status(500).send(err)
