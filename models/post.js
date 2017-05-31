@@ -3,6 +3,7 @@ mongoose.Promise = global.Promise;
 
 const PostSchema = new mongoose.Schema({
   user_id: String,
+  buyer_id: String,
   title: String,
   author: String,
   publisher: String,
@@ -11,7 +12,6 @@ const PostSchema = new mongoose.Schema({
   category: Number,
   condition: Number,
   price: Number,
-  dealing: Number
 });
 
 const post = mongoose.model('post', PostSchema);
