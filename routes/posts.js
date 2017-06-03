@@ -18,18 +18,32 @@ router.get('/', (request, response) => {
   })
 })
 
-router.get('/:user_id', (request, response) => {
+router.get('/private/:user_id', (request, response) => {
   post.find({ user_id: request.params.user_id }, (err, postsArray) => {
     if (err) response.status(500).send();
     else response.status(200).send(postsArray);
   })
 })
 
+router.get('/text/:text', (request, response) => {
+  const { text } = request.params.text
+  post.find({ $or: [ { title: request.params.text }, { author: request.params.text } ] }, (err, postsArray) => {
+    if (err) response.status(500).send();
+    else response.status(200).send(postsArray);
+  })
+})
+
+router.get('/category/:category', (request, response) => {
+  post.find({ category: request.params.category }, (err, postsArray) => {
+    if (err) response.status(500).send();
+    else response.status(200).send(postsArray);
+  })
+})
+
 router.put('/:id', (request, response) => {
-  const { image } = request.body
-  post.findByIdAndUpdate(request.params.id, { $set: { image: image } }, err => {
-    if (err) response.status(500).send(err)
-    else response.status(200). send(`${image}`)
+  post.findByIdAndUpdate(request.params.id, { $set: request.body }, err => {
+    if (err) response.status(500).send()
+    else response.status(200). send()
   })
 })
 
