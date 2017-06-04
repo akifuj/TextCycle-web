@@ -11,8 +11,11 @@ router.post('/', (request, response) => {
   })
 })
 
-router.get('/', (request, response) => {
-  post.find({}, (err, postsArray) => {
+router.get('/all/:number', (request, response) => {
+  post.find({})
+  .sort({ 'date': -1 })
+  .limit(parseInt(request.params.number))
+  .exec(function (err, postsArray) {
     if (err) response.status(500).send();
     else response.status(200).send(postsArray);
   })
