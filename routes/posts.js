@@ -13,7 +13,7 @@ router.post('/', (request, response) => {
 
 router.get('/all/:number', (request, response) => {
   post.find({})
-  .sort({ 'date': -1 })
+  .sort({ 'date': 1 })
   .limit(parseInt(request.params.number))
   .exec(function (err, postsArray) {
     if (err) response.status(500).send();
