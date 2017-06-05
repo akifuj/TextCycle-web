@@ -11,10 +11,8 @@ router.post('/', (request, response) => {
   })
 })
 
-router.get('/all/:number', (request, response) => {
-  post.find({})
-  .limit(parseInt(request.params.number))
-  .exec(function (err, postsArray) {
+router.get('/', (request, response) => {
+  post.find( { buyer_id: { $ne: "" } } (err, postsArray) => {
     if (err) response.status(500).send();
     else response.status(200).send(postsArray);
   })
@@ -55,5 +53,16 @@ router.delete('/:id', (request, response) => {
     else response.status(200).send();
   })
 })
+
+/*
+router.get('/all/:number', (request, response) => {
+  post.find({})
+  .limit(parseInt(request.params.number))
+  .exec(function (err, postsArray) {
+    if (err) response.status(500).send();
+    else response.status(200).send(postsArray);
+  })
+})
+*/
 
 export default router;
