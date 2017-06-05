@@ -19,7 +19,7 @@ router.get('/', (request, response) => {
 })
 
 router.get('/private/:user_id', (request, response) => {
-  post.find({ $and: [{ user_id: request.params.user_id }, { buyer_id: "" }]}, (err, postsArray) => {
+  post.find({ user_id: request.params.user_id }, (err, postsArray) => {
     if (err) response.status(500).send();
     else response.status(200).send(postsArray);
   })
@@ -34,7 +34,7 @@ router.get('/text/:text', (request, response) => {
 })
 
 router.get('/category/:category', (request, response) => {
-  post.find({ category: request.params.category }, (err, postsArray) => {
+  post.find({ $and: [ { category: request.params.category }, {buyer_id: ""} ] }, (err, postsArray) => {
     if (err) response.status(500).send();
     else response.status(200).send(postsArray);
   })
