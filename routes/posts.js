@@ -12,7 +12,7 @@ router.post('/', (request, response) => {
 })
 
 router.get('/', (request, response) => {
-  post.find( { buyer_id: { $ne: "" } } (err, postsArray) => {
+  post.find({ buyer_id: { $ne: "" }}, (err, postsArray) => {
     if (err) response.status(500).send();
     else response.status(200).send(postsArray);
   })
