@@ -4,8 +4,8 @@ import post from '../models/post'
 let router = express.Router();
 
 router.post('/', (request, response) => {
-  const { user_id, buyer_id, title, author, publisher, listPrice, condition, price, image } = request.body
-  new post({ user_id, buyer_id, title, author, publisher, listPrice, condition, price, image }).save(err => {
+  const { user_id, buyer_id, title, author, publisher, listPrice, category, condition, price, image } = request.body
+  new post({ user_id, buyer_id, title, author, publisher, listPrice, category, condition, price, image }).save(err => {
     if (err) response.status(500).send(err)
     else response.status(200).send(`${title} was successfully created.`)
   })
