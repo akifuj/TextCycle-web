@@ -19,7 +19,7 @@ router.get('/', (request, response) => {
 })
 
 router.get('/private/:user_id', (request, response) => {
-  post.find({ user_id: request.params.user_id }, (err, postsArray) => {
+  post.find({ $and: [{ user_id: request.params.user_id }, { buyer_id: "" }]}, (err, postsArray) => {
     if (err) response.status(500).send();
     else response.status(200).send(postsArray);
   })
@@ -27,7 +27,7 @@ router.get('/private/:user_id', (request, response) => {
 
 router.get('/text/:text', (request, response) => {
   const { text } = request.params.text
-  post.find({ $or: [ { title: request.params.text }, { author: request.params.text } ] }, (err, postsArray) => {
+  post.find({ $and: [{ $or: [ { title: request.params.text }, { author: request.params.text } ] }, {buyer_id: ""}] }, (err, postsArray) => {
     if (err) response.status(500).send();
     else response.status(200).send(postsArray);
   })
