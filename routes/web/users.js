@@ -1,8 +1,6 @@
 import express from 'express';
-import auth from 'basic-auth';
-import jwt from 'jsonwebtoken';
 
-import user from '../models/user';
+import user from '../../models/web-user';
 import bcrypt from 'bcrypt-nodejs';
 import isEmpty from 'lodash/isEmpty';
 

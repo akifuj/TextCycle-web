@@ -1,10 +1,13 @@
 import express from 'express';
-import book from '../models/book'
+import post from '../../models/post'
+
+import jwt from 'jsonwebtoken';
+import config from '../../config/config.js';
 
 let router = express.Router();
 
 router.get('/', (request, response) => {
-  book.find({}, (err, testArray) => {
+  post.find({}, (err, testArray) => {
     if (err) respnse.status(500).send();
     else response.status(200).send(testArray);
   })
@@ -12,7 +15,7 @@ router.get('/', (request, response) => {
 
 router.delete('/', (req, res) => {
   const { id } = req.body;
-  book.findByIdAndRemove(id, err => {
+  post.findByIdAndRemove(id, err => {
     if (err) res.status(500).send()
     else res.status(200)
   })
